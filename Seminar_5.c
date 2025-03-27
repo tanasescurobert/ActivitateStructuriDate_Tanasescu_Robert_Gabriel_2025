@@ -116,7 +116,7 @@ void adaugaLaInceputInLista(ListaDubla* lista, Masina masinaNoua) {
 ListaDubla citireLDMasiniDinFisier(const char* numeFisier) {
     FILE* f = fopen(numeFisier, "r");
     if (f == NULL) {
-        printf("Error opening file %s\n", numeFisier);
+        printf("Eroare %s\n", numeFisier);
         ListaDubla lista = { NULL, NULL };
         return lista;
     }
@@ -126,7 +126,7 @@ ListaDubla citireLDMasiniDinFisier(const char* numeFisier) {
 
     while (!feof(f)) {
         Masina m = citireMasinaDinFisier(f);
-        if (m.id != 0) { // Check if a valid Masina was read
+        if (m.id != 0) { 
             adaugaMasinaInLista(&lista, m);
         }
     }
