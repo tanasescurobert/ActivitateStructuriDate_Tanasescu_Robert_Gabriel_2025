@@ -9,31 +9,33 @@
 //	char initialaProducator;
 //};
 //
-//struct Masina initializare(int id, int anFabricatie, const char* sofer, float kilometriiParcursi, char initialaProducator) {
-//	struct Masina m;
+//typedef struct Masina Masina;
+//
+//Masina initializare(int id, int anFabricatie, const char* sofer, float kilometriiParcursi, char initialaProducator) {
+//    Masina m;
 //	m.id = id;
 //	m.anFabricatie = anFabricatie;
 //
-//	if (sofer != NULL)
-//		m.sofer = (char*)malloc(strlen(sofer) + 1);
-//	else
-//		m.sofer = NULL;
+//	if (sofer == NULL)
+//		sofer = "n/a";
 //
+//	m.sofer = (char*)malloc(strlen(sofer) + 1);
 //	strcpy_s(m.sofer, strlen(sofer) + 1, sofer);
+//
 //	m.kilometriiParcursi = kilometriiParcursi;
 //	m.initialaProducator = initialaProducator;
 //	return m;
 //}
 //
-//void afisare(struct Masina m) {
+//void afisare(Masina m) {
 //	printf("ID: %d \n", m.id);
 //	printf("An fabricatie: %d \n", m.anFabricatie);
 //	printf("Sofer: %s \n", m.sofer);
-//	printf("Kilometrii Parcursi : %f \n", m.kilometriiParcursi);
+//	printf("Kilometrii Parcursi : %.2f \n", m.kilometriiParcursi);
 //	printf("Initiala producator: %c \n", m.initialaProducator);
 //}
 //
-//void afisareVector(struct Masina* vector, int dim) {
+//void afisareVector(Masina* vector, int dim) {
 //	if (vector != NULL && dim > 0) {
 //		for (int i = 0; i < dim; i++) {
 //			afisare(vector[i]);
@@ -42,21 +44,23 @@
 //	}
 //}
 //
-//struct Masina* copiazaPrimeleNElemente(struct Masina* vector, int dim, int nrElementeCopiate) {
-//	struct Masina* vectorNou = NULL;
+//Masina* copiazaPrimeleNElemente(Masina* vector, int dim, int nrElementeCopiate) {
+//	Masina* vectorNou = NULL;
 //	if (vector != NULL && nrElementeCopiate <= dim && nrElementeCopiate > 0) {
-//		vectorNou = malloc(sizeof(struct Masina) * nrElementeCopiate);
+//		vectorNou = malloc(sizeof(Masina) * nrElementeCopiate);
 //
-//		for (int i = 0; i < dim; i++) {
-//			vectorNou[i] = initializare(vector[i].id, vector[0].anFabricatie,
-//				vector[0].sofer, vector[0].kilometriiParcursi, vector[0].initialaProducator);
+//		for (int i = 0; i < nrElementeCopiate; i++) {
+//			vectorNou[i] = initializare(vector[i].id, vector[i].anFabricatie,
+//				vector[i].sofer, vector[i].kilometriiParcursi, vector[i].initialaProducator);
 //		}
 //	}
+//
+//	return vectorNou;
 //}
 //
-//void dezalocare(struct Masina** vector, int* dim) {
-//	if (vector != NULL && dim > 0) {
-//		for (int i = 0; i < dim; i++) {
+//void dezalocare(Masina** vector, int* dim) {
+//	if (*vector != NULL && *dim > 0) {
+//		for (int i = 0; i < *dim; i++) {
 //			free((*vector)[i].sofer);
 //		}
 //
@@ -66,7 +70,7 @@
 //	}
 //}
 //
-//void copiazaMasinaCuMultiKilometrii(struct Masina* vector, char nrElemente, float prag, struct Masina** vectorNou, int* dim) {
+//void copiazaMasinaCuMultiKilometrii(Masina* vector, char nrElemente, float prag, struct Masina** vectorNou, int* dim) {
 //	if (vector != NULL && nrElemente > 0) {
 //		(*dim) = 0;
 //		for (int i = 0; i < nrElemente; i++) {
@@ -75,7 +79,7 @@
 //			}
 //		}
 //
-//		(*vectorNou) = malloc(sizeof(struct Masina) * (*dim));
+//		(*vectorNou) = malloc(sizeof(Masina) * (*dim));
 //		int contor = 0;
 //
 //		for (int i = 0; i < nrElemente; i++) {
@@ -92,7 +96,7 @@
 //
 //}
 //
-//struct Masina getPrimaMasinaDupaSofer(struct Masina* vector, int dim, const char* numeSofer) {
+//Masina getPrimaMasinaDupaSofer(Masina* vector, int dim, const char* numeSofer) {
 //	for (int i = 0; i < dim; i++) {
 //		if (strcmp(numeSofer, vector[i].sofer) == 0) {
 //			return vector[i];
@@ -118,7 +122,7 @@
 //	//afisareVector(vector, nrElemente);
 //
 //	int nrElementeCopiate = 2;
-//	struct Masina* vectorNou = copiazaPrimeleNElemente(vector, nrElemente, nrElementeCopiate);
+//	Masina* vectorNou = copiazaPrimeleNElemente(vector, nrElemente, nrElementeCopiate);
 //	afisareVector(vectorNou, nrElementeCopiate);
 //	dezalocare(&vectorNou, &nrElementeCopiate);
 //
@@ -129,9 +133,11 @@
 //	dezalocare(&vectorNou, &nrElementeCopiate);
 //
 //
-//	struct Masina masina = getPrimaMasinaDupaSofer(vector, nrElemente, "Marian");
+//	Masina masina = getPrimaMasinaDupaSofer(vector, nrElemente, "Marian");
 //	afisare(masina);
 //	dezalocare(&vector, &nrElemente);
+//
+//	
 //
 //	return 0;
 //}

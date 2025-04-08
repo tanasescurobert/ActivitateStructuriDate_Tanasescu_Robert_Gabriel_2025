@@ -16,7 +16,7 @@
 //typedef struct Nod Nod;
 //struct Nod {
 //	Masina info;
-//    Nod* next;
+//   Nod* next;
 //};
 //
 //Masina citireMasinaDinFisier(FILE* file) {
