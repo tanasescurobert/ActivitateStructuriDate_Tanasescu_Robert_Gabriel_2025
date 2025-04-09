@@ -132,9 +132,17 @@
     <ClCompile Include="Seminar_4.c" />
     <ClCompile Include="Seminar_5.c" />
     <ClCompile Include="Seminar_6.c" />
+    <ClCompile Include="Task_suplimentar_1.c" />
+    <ClCompile Include="Task_suplimentar_2.c" />
+    <ClCompile Include="Task_suplimentar_3.c" />
+    <ClCompile Include="Task_suplimentar_4.c" />
+    <ClCompile Include="Task_suplimentar_5.c" />
+    <ClCompile Include="Task_suplimentar_6.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="masini.txt" />
+    <Text Include="Text.txt" />
+    <Text Include="Text2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,9 +30,33 @@
     <ClCompile Include="Seminar_6.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Task_suplimentar_1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_suplimentar_2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_suplimentar_3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_suplimentar_4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_suplimentar_6.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_suplimentar_5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="masini.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Text.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Text2.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>
