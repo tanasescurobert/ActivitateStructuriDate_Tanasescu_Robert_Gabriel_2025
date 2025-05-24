@@ -80,20 +80,20 @@ void afisareListaMasiniDeLaFinal(ListaDubla lista) {
 }
 
 void adaugaMasinaInLista(ListaDubla* lista, Masina masinaNoua) {
-   Nod* nou = (Nod*)malloc(sizeof(Nod));
+    Nod* nou = malloc(sizeof(Nod));
+    nou->info = masinaNoua;
+    nou->prev = lista->coada;
+    nou->next = NULL;
 
-   nou->info = masinaNoua;
-   nou->prev = lista->coada;
-   nou->next = NULL;
+    if (lista->coada)
+    {
+        lista->coada->next = nou;
+    }
+    else {
+        lista->cap = nou;
+    }
 
-   if (lista->coada != NULL) {
-       lista->coada->next = nou;
-   }
-   else {
-       lista->cap = nou;
-   }
-
-   lista->coada = nou;
+    lista->coada = nou;
 }
 
 void adaugaLaInceputInLista(ListaDubla* lista, Masina masinaNoua) {
@@ -147,6 +147,9 @@ void dezalocareLDMasini(ListaDubla* lista) {
        lista->cap = m->next;
        free(m);
    }
+
+   lista->cap = NULL;
+   lista->coada = NULL;
 }
 
 float calculeazaPretMediu(ListaDubla lista) {
@@ -167,61 +170,62 @@ float calculeazaPretMediu(ListaDubla lista) {
 }
 
 void stergeMasinaDupaID(ListaDubla* lista, int id) {
-   Nod* m = lista->cap;
+    Nod* n = lista->cap;
+    while (n && n->info.id != id)
+        n = n->next;
 
-   while (m && m->info.id != id) {
-       m = m->next;
-   }
+    if (n) {
+        if (n->prev) {
+            n->prev->next = n->next;
+            
+            if (n->next) {
+                n->next->prev = n->prev;
+            }
+            else {
+                lista->coada = n->prev;
+            }
+        }
+        else {
+            lista->cap = n->next;
 
-   if (m) {
-       if (m->prev) {
-           m->prev->next = m->next;
+            if (n->next) {
+                n->next->prev = NULL;
+            }
+            else {
+                lista->coada = NULL;
+            }
+        }
 
-           if (m->next)
-               m->next->prev = m->prev;
-           else
-               lista->coada = m->prev;
-       }
-       else {
-           lista->cap = m->next;
-           if (m->next)
-               m->next->prev = NULL;
-           else
-               lista->coada = NULL;
-       }
-
-       free(m->info.numeSofer);
-       free(m->info.model);
-       free(m);
-   }
-
+        free(n->info.model);
+        free(n->info.numeSofer);
+        free(n);
+    }
 }
 
 char* getNumeSoferMasinaScumpa(ListaDubla lista) {
-   Nod* m = lista.cap;
-   Nod* maxPretMasina = m;
+    if (lista.cap) {
+        Nod* max = lista.cap;
+        Nod* temp = lista.cap->next;
 
-   if (lista.cap) {
-       while (m) {
-           if (m->info.pret > maxPretMasina->info.pret) {
-               maxPretMasina = m;
-           }
+        while (temp) {
+            if (temp->info.pret > max->info.pret) {
+                max = temp;
+            }
 
-           m = m->next;
-       }
+            temp = temp->next;
+        }
 
-       char* nume = malloc(strlen(maxPretMasina->info.numeSofer) + 1);
-       strcpy(nume, maxPretMasina->info.numeSofer);
-       return nume;
-   }
-   else {
-       return NULL;
-   }
+        char* nume = malloc(strlen(max->info.numeSofer) + 1);
+        strcpy_s(nume, strlen(max->info.numeSofer) + 1, max->info.numeSofer);
+        return nume;
+    }
+    else
+        return NULL;
 }
 
 int main() {
    ListaDubla lista = citireLDMasiniDinFisier("masini.txt");
-   afisareListaMasiniDeLaInceput(lista);
+   //afisareListaMasiniDeLaInceput(lista);
 
    stergeMasinaDupaID(&lista, 5);
    afisareListaMasiniDeLaFinal(lista);
