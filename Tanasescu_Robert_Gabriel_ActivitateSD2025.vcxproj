@@ -127,11 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Seminar_10.c" />
     <ClCompile Include="Seminar_2.c" />
     <ClCompile Include="Seminar_3.c" />
     <ClCompile Include="Seminar_4.c" />
     <ClCompile Include="Seminar_5.c" />
     <ClCompile Include="Seminar_6.c" />
+    <ClCompile Include="Seminar_8.c" />
+    <ClCompile Include="Seminar_9.c" />
     <ClCompile Include="Task_suplimentar_1.c" />
     <ClCompile Include="Task_suplimentar_2.c" />
     <ClCompile Include="Task_suplimentar_3.c" />
